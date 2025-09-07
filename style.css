@@ -1,0 +1,468 @@
+/* ===== THEME VARIABLES ===== */
+:root{
+  --bg:#0b0c10; --headerbg:#111217; --text:#f0f0f0; --muted:#cfd3de;
+  --card:#1c1f2a; --border:#1f2432; --section:#0d0f14;
+  --primary:#5b8cff; --accent:#8bffb0;
+}
+:root.light{
+  --bg:#f8fafc; --headerbg:#ffffff; --text:#0f172a; --muted:#5b6471;
+  --card:#ffffff; --border:#e5e7eb; --section:#f1f5f9;
+  --primary:#3b82f6; --accent:#059669;
+}
+
+
+/* fix global sizing */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Helvetica Neue", sans-serif;
+    line-height: 1.6;
+    background: #0b0c10;
+    color: #f0f0f0;
+  }
+  header {
+    background: #111217;
+    padding: 60px 20px;
+    text-align: center;
+  }
+  header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    color: #5b8cff
+  }
+  header p {
+    max-width: 600px;
+    margin: 10px auto;
+    color: #ddd;
+  }
+  section {
+    padding: 60px 20px;
+    max-width: 900px;
+    margin: auto;
+  }
+  h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #5b8cff;
+  }
+  .skills, .experience {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  .card {
+    background: #1c1f2a;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+  }
+  .btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 20px;
+    background: #5b8cff;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+  .btn:hover {
+    background: #5b8cff;
+  }
+  footer {
+    text-align: center;
+    padding: 20px;
+    background: #111217;
+    margin-top: 40px;
+  }
+  .text-center {
+    text-align: center;
+  }
+  .about-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* rapatkan kiri kanan */
+    gap: 20px;                      /* jarak lebih kecil */
+    flex-wrap: wrap;
+    max-width: 1000px;              /* biar nggak terlalu melebar */
+    margin: auto;
+    padding: 40px 20px;
+  }
+  
+  .about-text {
+    flex: 1;
+    min-width: 280px;
+    max-width: 600px; /* batasi lebar teks */
+  }
+  
+  .about-photo img {
+    width: 300px;        /* perkecil dikit biar balance */
+    height: 300px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #5b8cff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  }
+  @media (max-width: 768px) {
+    .about-container {
+      flex-direction: column;
+      text-align: center;
+    }
+    .about-text {
+      max-width: 100%;
+    }
+  }
+ /* Container & Section look */
+.section {
+    padding: 60px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  .section-title {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #5b8cff;
+    position: relative;
+    display: inline-block;
+  }
+  .section-title::after {
+    content: "";
+    display: block;
+    height: 3px;
+    width: 60%;
+    background: #5b8cff;
+    margin: 8px auto 0;
+    border-radius: 3px;
+  }
+  
+  /* (opsional) beda latar agar section tidak terlihat putih polos */
+  #skills.section, #experience.section, #cv.section {
+    background: #0d0f14;
+    border-top: 1px solid #151827;
+    border-bottom: 1px solid #151827;
+  }
+/* Card skill: judul+persen di atas, bar kecil di bawah */
+.card.skill{
+    padding: 16px 16px 14px;
+    text-align: left;         /* supaya rata kiri */
+  }
+  
+  .skill-top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* judul kiri, persen kanan */
+    margin-bottom: 10px;
+  }
+  
+  .skill-title{
+    font-weight: 600;
+    letter-spacing: .2px;
+  }
+  
+  .skill-num{
+    font-weight: 700;
+    color: #cdd3ff;
+  }
+  
+  /* Skill cards with percent bars */
+.skill { text-align: left; padding: 18px; }
+.skill-top{
+  display:flex; align-items:center; justify-content:space-between;
+  margin-bottom:10px; font-weight:600;
+}
+.skill-num{ color:#cdd3ff; }
+
+.progress{
+  position:relative; height:10px; background:#0f131d;
+  border:1px solid #1d2230; border-radius:999px; overflow:hidden;
+}
+.progress-bar{
+  width:0; height:100%;
+  background: linear-gradient(90deg, #5b8cff, #8bffb0);
+  box-shadow: 0 0 12px rgba(91,140,255,.35);
+  transition: width 1.1s ease;
+  border-radius:999px;
+}
+#typing-text {
+  border-right: 2px solid #5b8cff; /* kursor merah */
+  white-space: pre-line;           /* biar enter/line break ikut tampil */
+  overflow: hidden;
+}
+/* Title section rata kiri + garis (seperti skills) */
+.section-title.left{
+  display:block;
+  text-align:left;
+  margin-left: 4px;              /* sedikit offset biar rapi */
+}
+.section-title.left::after{
+  width:72px;                    /* “diagram batang” kecil di bawah judul */
+  margin:8px 0 0 0;              /* kiri */
+}
+
+/* Grid pengalaman */
+.exp-grid{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(280px, 1fr));
+  gap:22px;
+  margin-top:22px;
+}
+
+/* Kartu pengalaman */
+.exp-card{
+  background:#1c1f2a;
+  border:1px solid #1f2432;
+  border-radius:14px;
+  padding:22px 20px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+  min-height:180px;              /* tinggi minimum agar rata */
+  box-shadow: 0 6px 18px rgba(0,0,0,.25);
+}
+
+/* Typografi di dalam kartu */
+.exp-role{
+  margin:0 0 6px 0;
+  font-size:1.08rem;
+  font-weight:800;
+  letter-spacing:.2px;
+}
+.exp-company{
+  margin:0 0 10px 0;
+  font-weight:700;
+  color:#cdd3ff;
+}
+.exp-period{
+  margin:0 0 8px 0;
+  color:#9aa0a6;
+}
+.exp-desc{
+  margin:0;
+  color:#e8e9ee;
+}
+
+/* Responsive */
+@media (max-width: 900px){
+  .exp-grid{ grid-template-columns:1fr; }
+}
+
+/* Paragraf About: rata kiri-kanan */
+header#about .about-text #typing-text{
+  white-space: normal;          /* ganti dari pre-line */
+  text-align: justify;          /* rata kanan-kiri */
+  text-justify: inter-word;     /* distribusi spasi */
+  text-align-last: left;        /* baris terakhir tidak melebar */
+  line-height: 1.9;             /* biar lebih mudah dibaca */
+  max-width: 640px;             /* sedikit lebih lebar dari 600 */
+  margin-inline: auto;          /* tetap center di kolom teks */
+  border-right: 2px solid #5b8cff; /* kursor ketik tetap ada */
+}
+/* ===== THEME VARIABLES ===== */
+:root{
+  --bg:#0b0c10;
+  --headerbg:#111217;
+  --text:#f0f0f0;
+  --muted:#cfd3de;
+
+  --card:#1c1f2a;
+  --border:#1f2432;
+
+  --section:#0d0f14;            /* latar section skills/exp/cv */
+  --primary:#5b8cff;            /* warna utama */
+  --accent:#8bffb0;             /* warna kedua (gradient) */
+}
+
+/* Light mode overrides */
+:root.light{
+  --bg:#f8fafc;
+  --headerbg:#ffffff;
+  --text:#0f172a;
+  --muted:#5b6471;
+
+  --card:#ffffff;
+  --border:#e5e7eb;
+
+  --section:#f1f5f9;
+  --primary:#3b82f6;
+  --accent:#059669;
+}
+/* ===== THEME OVERRIDES (letakkan di akhir file) ===== */
+body{ background:var(--bg) !important; color:var(--text) !important; }
+
+header, header#about{ background:var(--headerbg) !important; }
+.section-title, h2{ color:var(--primary) !important; }
+
+.card{ background:var(--card) !important; border:1px solid var(--border) !important; }
+#skills.section, #experience.section, #cv.section{
+  background:var(--section) !important;
+  border-top:1px solid var(--border) !important;
+  border-bottom:1px solid var(--border) !important;
+}
+
+.btn{ background:var(--primary) !important; }
+.btn:hover{ filter:brightness(.95); }
+
+footer{ background:var(--headerbg) !important; color:var(--muted) !important; }
+
+.about-photo img{ border-color:var(--primary) !important; }
+#typing-text{ border-right:2px solid var(--primary) !important; }
+
+.progress{ background:#0f131d22; border:1px solid var(--border); }
+.progress-bar{ background:linear-gradient(90deg, var(--primary), var(--accent)); }
+
+/* Tombol toggle */
+.theme-toggle{
+  position:fixed; right:20px; bottom:20px; z-index:9999;
+  border:1px solid var(--border); background:var(--card); color:var(--text);
+  width:42px; height:42px; border-radius:999px; display:grid; place-items:center; cursor:pointer;
+  box-shadow:0 8px 24px rgba(0,0,0,.25);
+}
+.theme-toggle:hover{ transform:translateY(-1px); }
+/* === THEME FIXES (OVERRIDES) === */
+
+/* Teks umum */
+body { color: var(--text) !important; }
+a { color: var(--primary); }
+
+/* Header & paragraf About */
+header, header#about { background: var(--headerbg) !important; }
+header p, header#about p,
+header#about .about-text #typing-text {
+  color: var(--text) !important;   /* ganti dari #ddd */
+  opacity: 0.95;
+  border-right-color: var(--primary) !important; /* cursor typing */
+}
+
+/* Section latar */
+#skills.section, #experience.section, #cv.section {
+  background: var(--section) !important;
+  border-top: 1px solid var(--border) !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+/* Semua kartu (skills, experience, cv) ikut tema */
+.card,
+.card.skill,
+.exp-card,
+.cv-cta {
+  background: var(--card) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text) !important;
+  box-shadow: 0 6px 18px rgba(2, 6, 23, .08) !important; /* lebih halus utk light */
+}
+
+/* Typografi pengalaman agar cocok di kedua tema */
+.exp-company { color: var(--primary) !important; }
+.exp-period  { color: var(--muted)  !important; }
+.exp-desc    { color: var(--text)   !important; opacity: .95; }
+
+/* Tombol */
+.btn { background: var(--primary) !important; color:#fff !important; }
+.btn:hover { filter: brightness(.95); }
+
+/* Progress bar pakai warna tema */
+.progress { background: #0f131d22; border: 1px solid var(--border) !important; }
+.progress-bar { background: linear-gradient(90deg, var(--primary), var(--accent)) !important; }
+
+/* Footer ikut tema */
+footer { background: var(--headerbg) !important; color: var(--muted) !important; }
+
+/* Elemen dekor */
+.about-photo img { border-color: var(--primary) !important; }
+
+/* Pastikan judul warna tema */
+h2, .section-title { color: var(--primary) !important; }
+/* ===== Perapihan Download CV ===== */
+
+/* Layout umum (biarkan kalau sudah ada, ini hanya penegasan) */
+.cv-container{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:28px; flex-wrap:wrap; max-width:1000px; margin:0 auto;
+}
+.cv-text{ flex:1 1 520px; min-width:260px; text-align:left; }
+.cv-text p{ color:var(--text); opacity:.95; margin:12px 0 8px; max-width:60ch; }
+.cv-points{ margin:10px 0 0; padding-left:18px; color:var(--muted); }
+.cv-points li{ margin:6px 0; }
+
+/* Kartu CTA di kanan */
+.cv-cta{
+  flex:0 0 320px;              /* lebar ideal di desktop */
+  display:flex; flex-direction:column; gap:12px; align-items:stretch;
+  background:var(--card); border:1px solid var(--border);
+  border-radius:14px; padding:20px;
+  box-shadow:0 8px 22px rgba(2,6,23,.08);
+}
+
+/* Tombol di dalam CTA: full width & rapi */
+.cv-cta .btn{ width:100%; margin:0; border-radius:10px; }
+
+/* Primary tetap solid */
+.cv-cta .btn.primary{ background:var(--primary) !important; color:#fff !important; }
+
+/* Outline/ghost: pastikan TIDAK putih lagi */
+.cv-cta .btn.ghost{
+  background:transparent !important;
+  border:1px solid var(--primary) !important;
+  color:var(--primary) !important;
+}
+.cv-cta .btn.ghost:hover{
+  background:color-mix(in srgb, var(--primary) 10%, transparent);
+  filter:none;
+}
+
+/* Catatan kecil di bawah tombol */
+.cv-cta .small{ color:var(--muted); margin:2px 0 0; text-align:center; }
+
+/* Responsif */
+@media (max-width:768px){
+  .cv-container{ flex-direction:column; }
+  .cv-cta{ width:100%; }
+}
+/* Jarak teks About ke garis pemisah (biru) */
+header#about .about-text #typing-text{
+  padding-right: 28px;   /* geser garis menjauh dari teks */
+  border-right-width: 3px; /* opsional: garis sedikit lebih tegas */
+}
+
+/* Tambah jarak antar kolom teks & foto (opsional) */
+.about-container{
+  gap: 36px;             /* semula 20–28; silakan atur 32/40 sesuai selera */
+}
+
+/* Di layar kecil, otomatis hilangkan jarak ekstra */
+@media (max-width: 768px){
+  header#about .about-text #typing-text{ padding-right: 12px; }
+}
+/* ===== Kontak (di Download CV) ===== */
+.cv-contacts{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap:12px;
+  margin-top:14px;
+}
+
+.contact{
+  display:flex; align-items:center; gap:12px;
+  padding:12px 14px;
+  border:1px solid var(--border);
+  background:var(--card);
+  color:var(--text);
+  border-radius:12px;
+  text-decoration:none;
+  transition:transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+  box-shadow:0 6px 14px rgba(2,6,23,.06);
+}
+.contact:hover{
+  border-color:var(--primary);
+  transform:translateY(-1px);
+  box-shadow:0 10px 20px rgba(2,6,23,.08);
+}
+
+.contact .icon{ display:inline-grid; place-items:center; color:var(--primary); }
+.contact .contact-text{ display:flex; flex-direction:column; line-height:1.25; }
+.contact .contact-text strong{ font-weight:700; }
+.contact .contact-text span{ color:var(--muted); font-size:.92rem; }
